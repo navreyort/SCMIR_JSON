@@ -1,0 +1,14 @@
+============================================================
+These scripts extract audio feature from wav/aif file using
+bash/python/supercollider/weka/. The program expects at
+least one argument which is the sound file name to process.
+If you are using -t option, the program assumes that
+there is a sub directory called "snd" where the processing
+sound file resides.
+
+Usage example:
+  sh GenerateAudioFeature.sh path/to/sound/file/snd.wav
+  sh GenerateAudioFeature.sh -t path/to/sound/file/snd.wav
+
+Happy processing audio file :)
+============================================================
