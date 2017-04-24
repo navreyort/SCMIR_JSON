@@ -64,19 +64,19 @@ rm "$dirName"/*.scmirZ
 
 echo "Running weka..."
 #Convert arff to csv
-java -classpath /Applications/weka-3-6-8/weka.jar weka.core.converters.CSVSaver -i "$dirName"/"$fileName".arff -o "$dirName"/"$fileName".csv
+java -classpath /Applications/weka-3-9-1-oracle-jvm.app/Contents/Java/weka.jar weka.core.converters.CSVSaver -i "$dirName"/"$fileName".arff -o "$dirName"/"$fileName".csv
 rm "$dirName"/"$fileName".arff
 
-echo "Normalizing data..."
-$((python NormalizeCSV.py "$dirName"/"$fileName".csv) 2>&1)
+# echo "Normalizing data..."
+# $((python NormalizeCSV.py "$dirName"/"$fileName".csv) 2>&1)
 
-audioFeatures="MFCC0,MFCC1,MFCC2,MFCC3,MFCC4,MFCC5,SpecCentroid,SpecPcile,SpecFlatness,FFTCrest,FFTSpread,FFTSlope,Loudness,SensoryDissonance"
+audioFeatures="Loudness,SensoryDissonance,SpecCentroid,SpecPcile,SpecFlatness,FFTCrest,FFTSpread,FFTSlope,Tartini,Tartini2,MFCC1,MFCC2,MFCC3,MFCC4,MFCC5,MFCC6,MFCC7,MFCC8,MFCC9,MFCC10,MFCC11,MFCC12,MFCC13"
 #prepend field name to csv file
 cat "$dirName"/"$fileName".csv | pbcopy && echo $audioFeatures > "$dirName"/"$fileName".csv && pbpaste >> "$dirName"/"$fileName".csv
 
 echo "Converting csv to json..."
 $((python csv2json.py "$dirName"/ "$dirName"/) 2>&1)
-rm "$dirName"/"$fileName".csv
+#rm "$dirName"/"$fileName".csv
 
 echo "Done :)"
 exit 0

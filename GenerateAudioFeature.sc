@@ -9,8 +9,8 @@ var analyze = { | path, wavTimes |
 	buffer = Buffer.readChannel(s,path,channels:[0]);
 
 	"SC: Beginning analysis".postln;
-	analysis = SCMIRAudioFile(path, [[MFCC,6],[SpecCentroid],[SpecPcile],[SpecFlatness],[FFTCrest],[FFTSpread],[FFTSlope],[Loudness],[SensoryDissonance]]);
-	analysis.extractFeatures();
+	analysis = SCMIRAudioFile(path, [[Loudness],[SensoryDissonance],[SpecCentroid],[SpecPcile],[SpecFlatness],[FFTCrest],[FFTSpread],[FFTSlope], [Tartini], [MFCC,13]]);
+	analysis.extractFeatures(false);
 	analysis.extractBeats();
 	analysis.save;
 
